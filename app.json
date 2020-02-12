@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/top250/top250",
+    "pages/me/me",
+    "pages/news/news"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ff5777",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "电影详情",
+    "backgroundColor": "#fff",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false,
+    "onPullDownRefresh": true,
+    "onReachBottomDistance":200
+  },
+  "tabBar": {
+    "color": "#9BABBA",
+    "selectedColor": "#495056",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tar-home.png",
+        "selectedIconPath": "images/tar-home-on.png",
+        "text": "即将上映"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "iconPath": "images/tar-about.png",
+        "selectedIconPath": "images/tar-about-on.png",
+        "text": "新片榜"
+      },
+      {
+        "pagePath": "pages/top250/top250",
+        "iconPath": "images/tar-topic.png",
+        "selectedIconPath": "images/tar-topic-on.png",
+        "text": "Top250"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "images/tar-person.png",
+        "selectedIconPath": "images/tar-person-on.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  }
+}
