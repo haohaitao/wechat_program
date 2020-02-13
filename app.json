@@ -8,12 +8,11 @@
   ],
   "window": {
     "navigationBarBackgroundColor": "#ff5777",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "电影详情",
     "backgroundColor": "#fff",
-    "backgroundTextStyle": "dark",
+    "backgroundTextStyle": "light",
     "enablePullDownRefresh": false,
-    "onPullDownRefresh": true,
     "onReachBottomDistance":200
   },
   "tabBar": {

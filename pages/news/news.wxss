@@ -40,14 +40,13 @@
   color: #999;
 }
 
-.list .item .rating text {
+.list .item .rating .has_video {
   display: inline-block;
-  width: 40rpx;
+  width: 105rpx;
   font-size: 28rpx;
   font-weight: bold;
   text-align: center;
-  background-color: rgba(247, 76, 49, 0.8);
-  color: #fff;
+  color: #00A65F;
   padding: 10rpx;
   border-radius: 20rpx;
 }
@@ -68,4 +67,62 @@
   width: 40rpx;
   height: 40rpx;
   margin-right: 20rpx;
+}
+.list .item .meta .fraction{
+  display: inline-block;
+  padding-left:85px;
+  font-size:26rpx;
+  color:#e09015;
+}
+.list .item .meta .rating-star {
+  display: inline-block;
+  width: 120px;
+  height: 15px;
+  background-repeat: no-repeat;
+  background-image: url(https://www.haoht123.com/wp-content/themes/begin/template/db_api/include/db_star.png);
+  overflow: hidden;
+}
+
+.allstar10 {
+	background-position: 0px 0px;
+}
+
+.allstar9 {
+	background-position: 0px -15px;
+}
+
+.allstar8 {
+	background-position: 0px -30px;
+}
+
+.allstar7 {
+	background-position: 0px -45px;
+}
+
+.allstar6 {
+	background-position: 0px -60px;
+}
+
+.allstar5 {
+	background-position: 0px -75px;
+}
+
+.allstar4 {
+	background-position: 0px -90px;
+}
+
+.allstar3 {
+	background-position: 0px -105px;
+}
+
+.allstar2 {
+	background-position: 0px -120px;
+}
+
+.allstar1 {
+	background-position: 0px -135px;
+}
+
+.allstar0 {
+	background-position: 0px -150px;
 }

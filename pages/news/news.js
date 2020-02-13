@@ -1,4 +1,5 @@
 // pages/news/news.js
+import getJson from '../../utils/network.js'
 Page({
 
   /**
@@ -7,7 +8,10 @@ Page({
   data: {
     title: '',
     subtitle: '加载中...',
-    listData: []
+    listData: [],
+    start: 1,
+    count: 0,//总数
+    total: 0 //总数
   },
 
   /**
@@ -21,16 +25,24 @@ Page({
   onReady: function () {
     var _this = this
     wx.showLoading({ title: '拼命加载中...' })
-    wx.request({
-      url: 'https://douban.uieee.com/v2/movie/new_movies',
-      header: { 'Content-Type': 'json' },
-      success(res) {
-        console.log(res)
-        wx.hideLoading()
-        _this.setData({
-          listData: res.data
-        })
+    getJson({
+      url: '/v2/movie/new_movies',
+      data: {
+        start: 0,
+        count: 20
       }
+    }).then( res=>{
+      wx.hideLoading()
+      res.data.subjects.forEach((ele) => {
+        ele.subtype = 'rating-star allstar' + Math.ceil(ele.rating.average)
+      })
+      _this.setData({
+        listData: res.data.subjects,
+        count: res.data.count,
+        total: res.data.total
+      })
+    }).catch( err=>{
+      console.log(err)
     })
   },
 
@@ -61,18 +73,55 @@ Page({
   onPullDownRefresh: function () {
 
   },
-
+  // 上拉加载请求
+  pullUp(start) {
+    if (this.data.listData.length == this.data.total) {
+      wx.showToast({
+        title: '已加载全部内容~',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      wx.showLoading({ title: '拼命加载中...' })
+      getJson({
+        url: '/v2/movie/new_movies',
+        data: {
+          start: (start - 1) * 20,
+          count: 20
+        }
+      }).then(res => {
+        if (res.data.subjects.length) {
+          res.data.subjects.forEach((ele) => {
+            ele.subtype = 'rating-star allstar' + Math.ceil(ele.rating.average)
+          })
+          this.setData({
+            listData: this.data.listData.concat(res.data.subjects)
+          })
+        }
+        wx.hideLoading()
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    wx.showToast({
+      title: '已加载全部内容~',
+      icon: 'none',
+      duration: 2000
+    })
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '近期新片排行榜',
+      path: '/pages/news/news'
+    }
   }
 })

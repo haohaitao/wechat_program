@@ -1,4 +1,5 @@
 // 创建页面实例对象
+import getJson from '../../utils/network.js'
 Page({
   /**
    * 页面的初始数据
@@ -14,20 +15,18 @@ Page({
   onLoad (params) {
     wx.showLoading({ title: '拼命加载中...' })
     var _this = this
-    wx.request({
-      url: 'https://douban.uieee.com/v2/movie/subject/' + params.id,
-      header: { 'Content-Type': 'json' },
-      success(res){
-        console.log(res)
-        _this.setData({
-          title: res.data.title, 
-          movie: res.data
-        })
-        wx.hideLoading()
-      }
+    getJson({
+      url: '/v2/movie/subject/' + params.id
+    }).then( res=>{
+      wx.hideLoading()
+      _this.setData({
+        title: res.data.title,
+        movie: res.data
+      })
+    }).catch( err=>{
+      console.log('电影详情页..',err)
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -38,8 +37,7 @@ Page({
    */
   onShareAppMessage () {
     return {
-      title: this.data.title,
-      desc: this.data.title,
+      title: '《' + this.data.title + '》的电影详情~',
       path: '/pages/item?id=' + this.data.id
     }
   },

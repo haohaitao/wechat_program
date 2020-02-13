@@ -2,13 +2,16 @@
 <!--pages/news/news.wxml-->
 <!-- 渲染普通的单项数据 -->
 <!-- 例如：https://api.douban.com/v2/movie/top250?count=1 -->
-<view class="list" wx:for="{{ listData.subjects }}" wx:key="item.id">
+<view class="list" wx:for="{{ listData }}" wx:key="item.id">
 <navigator url="../item/item?id={{ item.id }}">
   <view class="item">
     <image class="poster" src="{{ item.images.small }}" />
 
     <view class="meta">
       <text class="title">{{ item.title }}</text>
+        <text class="{{item.subtype ? item.subtype : item.subtype}}">
+        <text class="fraction">{{ item.rating.average }}</text>
+        </text>
       <text class="sub-title">{{ item.original_title }} ({{ item.year }})</text>
       <view class="artists">导演：
         <block  wx:for="{{ item.directors }}" wx:key="id"> {{ item.name }} </block>
@@ -16,7 +19,7 @@
     </view>
 
     <view class="rating">
-      <text>{{ item.rating.average }}</text>
+        <text class="has_video">{{item.has_video ? '[可播放]' : '' }}</text>
     </view>
 
   </view>
