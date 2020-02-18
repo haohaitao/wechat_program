@@ -21,3 +21,19 @@
   margin-top: 200px;
   text-align: center;
 }
+
+.bg{
+  background-color:#fff;
+  height:450px;
+}
+
+.bg image{
+  width:100%;
+  position: relative;
+}
+
+.bg-message{
+  position: absolute;
+  margin-top: 95%;
+  left:29%;
+}
